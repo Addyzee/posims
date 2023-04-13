@@ -1,0 +1,53 @@
+{% extends 'master/base.html' %}
+{% block title %}
+    {{ls.name}} Inventory
+{% endblock %}
+{% block content %}
+    <h1>{{ls.name}}</h1>
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <table class ="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Code</th>
+            <th scope="col">Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Description</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Count</th>
+            <th scope="col">Date Added</th>
+          </tr>
+        </thead>
+        <tbody id="myTable">
+            {% for item in ls.item_set.all %}
+                <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{item.code}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.category}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.quantity}}</td>
+                <td>{{item.count}}</td>
+                <td>{{item.date_added}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  <div class="col text-center">
+  <button type="button" class="btn btn-primary" onclick="window.location.href='../table_form1/'">Update Table</button>
+  </div>
+  {% endblock %}
+{% block scripts %}
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+        
+{% endblock %}
+

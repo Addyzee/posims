@@ -1,0 +1,67 @@
+{% extends 'master/base.html' %}
+{% load static %}
+{% block title %}
+    {{ls.name}} Inventory
+{% endblock %}
+{% block content %}
+	<h1>{{ls.name}}</h1>
+	<table class="table">
+        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Code</th>
+            <th scope="col">Name</th>
+            <th scope="col" style="width:70%">Category</th>
+            <th scope="col">Description</th>
+            <th scope="col">Quantity</th>
+            <th scope="col" style="width:70%">Count</th>
+            <th scope="col">Date Added</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody id="myTable">
+          {% for item in ls.item_set.all %}
+                <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{item.code}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.category}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.quantity}}</td>
+                <td>{{item.count}}</td>
+                <td>{{item.date_added}}</td>
+                <td><a href="{% url 'edit' ls.id item.id %}"><img src="{% static 'images/edit.png' %}" alt="edit" width="20" height="20"></a></td>
+                <td><img src="{% static 'images/trash.svg' %}" alt="delete"></td>
+                </tr>
+          {% endfor %}
+          <form method="POST" action="#">
+            {% csrf_token %}
+                <tr contenteditable="true">
+                <th scope="row"></th>
+                <td><input style="width: 100px" type="text" name="code" placeholder="###" /></td>
+                <td><input type="text" name="name" placeholder="Name" /></td>
+                <td><input type="text" name="category" placeholder="Category" /></td>
+                <td><input type="text" name="description" placeholder="Description" /></td>
+                <td><input style="width: 100px" type="text" name="quantity" placeholder="Quantity" /></td>
+                <td><input style="width: 100px" type="number" name="count" placeholder="Count" /></td>
+                <td><button style="width: 200px" type="submit" name="Add">Add</button></td>
+                </tr>
+          </form>
+        </tbody>
+	</table>
+{% endblock %}
+{% block scripts %}
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+        
+{% endblock %}
