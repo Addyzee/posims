@@ -44,5 +44,6 @@ def index (response,id):
 
 # home page
 def home(response):
+    print("here")
     return render(response, "master/home.html", {}) 
 
