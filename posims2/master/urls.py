@@ -9,4 +9,5 @@ urlpatterns = [
     path("<str:id>",views.index, name='index'),
     path("table_form<int:id>/",views.update, name='update'),
     path("edit_table/<int:lsid>/<int:itid>",views.edit, name='edit'),
+    path("delete/<int:lsid>/<int:itid>",views.delete, name='delete'),
 ]

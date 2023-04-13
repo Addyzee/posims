@@ -33,7 +33,7 @@
                 <td>{{item.count}}</td>
                 <td>{{item.date_added}}</td>
                 <td><a href="{% url 'edit' ls.id item.id %}"><img src="{% static 'images/edit.png' %}" alt="edit" width="20" height="20"></a></td>
-                <td><img src="{% static 'images/trash.svg' %}" alt="delete"></td>
+                <td><a href="{% url 'delete' ls.id item.id %}"><img src="{% static 'images/trash.svg' %}" alt="delete"></a></td>
                 </tr>
           {% endfor %}
           <form method="POST" action="#">

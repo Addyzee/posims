@@ -7,7 +7,7 @@ class ItemForm(ModelForm):
     code = forms.CharField(widget=forms.Textarea(attrs={'rows': 1, 'cols': 8}))
     name = forms.CharField(widget=forms.Textarea(attrs={'rows': 1, 'cols': 15}))
     category = forms.CharField(widget=forms.Textarea(attrs={'rows': 1, 'cols': 15}))
-    description = forms.CharField(widget=forms.Textarea(attrs={'rows': 1, 'cols': 30}))
+    description = forms.CharField(required=False,widget=forms.Textarea(attrs={'rows': 1, 'cols': 30}))
     quantity = forms.CharField(widget=forms.Textarea(attrs={'rows': 1, 'cols': 8}))
     count = forms.FloatField(widget=forms.Textarea(attrs={'rows': 1, 'cols': 8}))
     class Meta:

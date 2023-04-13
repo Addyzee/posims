@@ -3,13 +3,6 @@ from django.http import HttpResponse
 from .models import Inventory,Item
 from .forms import ItemForm
 
-# <td><input style="width: 100px" type="text" id="code" placeholder="###" /></td>
-# <td><input type="text" id="name" placeholder="Name" /></td>
-# <td><input type="text" id="category" placeholder="Category" /></td>
-# <td><input type="text" id="description" placeholder="Description" /></td>
-# <td><input style="width: 100px" type="text" id="quantity" value="Quantity" placeholder="Quantity" /></td>
-# <td><input style="width: 100px" type="number" id="Count" placeholder="Count" /></td>
-# <td><button style="widt
 
 def edit(response,lsid,itid):
     ls = Inventory.objects.get(id=lsid)
@@ -18,14 +11,25 @@ def edit(response,lsid,itid):
     context = {"ls":ls,"it":it, "form": form}
     # ideal case should check what has been posted, and set the required fields and unrequired as they should be
     if response.method == "POST":
-        form = ItemForm(response.POST)
+        form = ItemForm(response.POST, instance=it)
         if form.is_valid():
             it = form.save(commit=False)
-            it.inventory_id = lsid
+            # it.inventory_id = lsid
             it.save()
             return redirect(update,lsid)
         
     return render(response, "master/edit_table.html", context) 
+
+def delete(response,lsid,itid):
+    ls = Inventory.objects.get(id=lsid)
+    it = ls.item_set.get(id=itid)
+    context = {"ls":ls,"it":it}
+    if response.method == "POST":
+        it.delete()
+        return redirect(update,ls.id)
+    return render(response,"master/delete.html",context)
+
+
 
 # add items to inventory
 def update(response,id):

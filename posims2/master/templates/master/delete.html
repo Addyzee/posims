@@ -1,0 +1,14 @@
+{% extends 'master/base.html' %}
+{% load static %}
+{% block title %}
+    {{ls.name}} Inventory
+{% endblock %}
+{% block content %}
+<p>Are you sure you want to delete? "{{it.name}}"?</p>
+<form action="{% url 'delete' ls.id it.id %}" method="POST">
+    {% csrf_token %}
+    <a href="{% url 'update' ls.id %}">Cancel</a>
+
+    <input type="submit" name="Confirm">
+</form>
+{% endblock %}
