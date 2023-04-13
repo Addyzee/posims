@@ -40,12 +40,12 @@
             {% csrf_token %}
                 <tr contenteditable="true">
                 <th scope="row"></th>
-                <td><input style="width: 100px" type="text" name="code" placeholder="###" /></td>
-                <td><input type="text" name="name" placeholder="Name" /></td>
-                <td><input type="text" name="category" placeholder="Category" /></td>
-                <td><input type="text" name="description" placeholder="Description" /></td>
-                <td><input style="width: 100px" type="text" name="quantity" placeholder="Quantity" /></td>
-                <td><input style="width: 100px" type="number" name="count" placeholder="Count" /></td>
+                <td>{{ form.code }}</td>
+                <td>{{ form.name }}</td>
+                <td>{{ form.category }}</td>
+                <td rowspan="1">{{ form.description }}</td>
+                <td>{{ form.quantity}}</td>
+                <td>{{ form.count }}</td>
                 <td><button style="width: 200px" type="submit" name="Add">Add</button></td>
                 </tr>
           </form>

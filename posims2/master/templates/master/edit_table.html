@@ -39,13 +39,13 @@
             {% csrf_token %}
                 <tr contenteditable="true">
                 <th scope="row"></th>
-                <td><input style="width: 100px" type="text" name="code" placeholder="###" /></td>
-                <td><input type="text" name="name" placeholder="Name" /></td>
-                <td><input type="text" name="category" placeholder="Category" /></td>
-                <td><input type="text" name="description" placeholder="Description" /></td>
-                <td><input style="width: 100px" type="text" name="quantity" placeholder="Quantity" /></td>
-                <td><input style="width: 100px" type="number" name="count" placeholder="Count" /></td>
-                <td><button style="width: 200px" type="submit" name="Add">Add</button></td>
+                <td><input style="width: 100px" type="text" name="code" value={{item.code}} /></td>
+                <td><input type="text" name="name" value={{item.name}} /></td>
+                <td><input type="text" name="category" value={{item.category}} /></td>
+                <td><input type="text" name="description" value={{item.description}} /></td>
+                <td><input style="width: 100px" type="text" name="quantity" value={{item.quantity}} /></td>
+                <td><input style="width: 100px" type="number" name="count" value={{item.count}} /></td>
+                <td><button style="width: 200px" type="submit" name="Edits">Submit</button></td>
                 </tr>
              {% endif %}
           </form>
