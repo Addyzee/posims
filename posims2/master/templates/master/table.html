@@ -34,7 +34,7 @@
         </tbody>
     </table>
   <div class="col text-center">
-  <button type="button" class="btn btn-primary" onclick="window.location.href='../table_form1/'">Update Table</button>
+  <a href="{% url 'update' ls.id %}"><button type="button" class="btn btn-primary">Update Table</button></a>
   </div>
   {% endblock %}
 {% block scripts %}

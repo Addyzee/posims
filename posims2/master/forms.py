@@ -17,5 +17,5 @@ class ItemForm(ModelForm):
 
 
 
-class CreateNewInventory(forms.Form):
+class InventoryForm(forms.Form):
     name = forms.CharField(label="Name", max_length=200)
