@@ -5,13 +5,6 @@
 
 
 {% block login %}
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
 <form method="POST" class="form-group"  style="margin-left: 160px; margin-right: 160px;  padding: 0px 10px;">
     {% csrf_token %}
     {{ form|crispy }}
